@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Libre Caslon Condensed";
+  src: url("./fonts/LibreCaslonCondensed-Italic[wght].ttf")
+    format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@theme {
+  /* Colors */
+  --color-camino-green: #142900;
+  --color-camino-cream: #f3f3f1;
+  --color-camino-white: #ffffff;
+  --color-camino-gray: #78786d;
+
+  /* Spacing */
+  --spacing-camino-xs: --spacing(1);   /* 4px */
+  --spacing-camino-s: --spacing(2);    /* 8px */
+  --spacing-camino-m: --spacing(4);    /* 16px */
+  --spacing-camino-l: --spacing(6);    /* 24px */
+  --spacing-camino-xl: --spacing(8);   /* 32px */
+  --spacing-camino-2xl: --spacing(10);  /* 40px */
+  --spacing-camino-3xl: --spacing(16); /* 64px */
+
+  /* Typography */
+  --font-heading: "Inter Tight", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-accent: "Libre Caslon Condensed", serif;
+
+  /* Layout */
+  --container-camino: 56rem;
+  --breakpoint-md: 48rem;
+}
+
+@utility grid-camino {
+  display: grid;
+  width: 100%;
+  max-width: var(--container-camino);
+  margin-inline: auto;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: var(--spacing-camino-m);
+  padding-inline: var(--spacing-camino-l);
+
+  @media (width >= theme(--breakpoint-md)) {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    padding-inline: 0;
+  }
+}
+
+@utility text-camino-l {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl); /* 30px */
+  font-weight: 400;
+  line-height: var(--text-3xl--line-height);
+}
+
+@utility text-camino-m {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl); /* 24px */
+  font-weight: 400;
+  line-height: var(--text-2xl--line-height);
+}
+
+@utility text-camino-s {
+  font-family: var(--font-body); 
+  font-size: var(--text-base); /* 16px */
+  line-height: var(--text-base--line-height);
+  font-weight: 500;
+}
+
+@utility text-camino-xs {
+  font-family: var(--font-body);
+  font-size: var(--text-sm); /* 14px */
+  font-weight: 500;
+  line-height: var(--text-sm--line-height);
+}
+
+@utility text-camino-cta {
+  font-family: var(--font-body);
+  font-size: var(--text-sm); /* 14px */
+  font-weight: 500;
+  line-height: 100%;
+}
+
+@utility checkbox-camino {
+  &:checked {
+    background-image: url("./assets/icons/check.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+@layer base {
+  body {
+    font-family: var(--font-body);
+    color: var(--color-camino-green);
+    background-color: var(--color-camino-cream);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  :root {
+    overscroll-behavior: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
+
+  h1 > span,
+  h2 > span,
+  h3 > span,
+  h4 > span,
+  h5 > span,
+  h6 > span {
+    font-family: var(--font-accent);
+    font-style: italic;
+  }
+}
+
+/* Button */
+@utility button-camino {
+  @apply w-fit inline-flex items-center justify-center gap-[var(--spacing-camino-s)] px-[var(--spacing-camino-m)] py-3 rounded-full border text-camino-cta transition duration-100 active:scale-95 cursor-pointer ;
+}
+
+@utility button-camino-outlined-light {
+  @apply border-camino-green text-camino-green hover:bg-camino-green hover:text-camino-cream;
+}
+
+@utility button-camino-outlined-dark {
+  @apply border-camino-cream text-camino-cream hover:bg-camino-cream hover:text-camino-green;
+}
+
+@utility button-camino-solid-light {
+  @apply border-camino-green bg-camino-green text-camino-cream hover:opacity-80;
+}
+
+@utility button-camino-solid-dark {
+  @apply border-camino-cream bg-camino-cream text-camino-green hover:opacity-80;
+}
+
+/* Input */
+@utility input-camino {
+  @apply w-full rounded-lg p-4 text-sm text-camino-green placeholder:text-camino-gray focus:outline-none focus:ring-1 focus:ring-camino-green/30;
+}
